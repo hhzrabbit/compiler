@@ -25,11 +25,10 @@ def run(filename):
     tmp = []
     step = 0.1
     for command in commands:
-        print command
         line = command[0]
         args = command[1:]
+
         if line == 'sphere':
-            #print 'SPHERE\t' + str(args)
             add_sphere(tmp,
                        float(args[0]), float(args[1]), float(args[2]),
                        float(args[3]), step)
@@ -38,7 +37,6 @@ def run(filename):
             tmp = []
 
         elif line == 'torus':
-            #print 'TORUS\t' + str(args)
             add_torus(tmp,
                       float(args[0]), float(args[1]), float(args[2]),
                       float(args[3]), float(args[4]), step)
@@ -47,7 +45,6 @@ def run(filename):
             tmp = []
             
         elif line == 'box':
-            #print 'BOX\t' + str(args)
             add_box(tmp,
                     float(args[0]), float(args[1]), float(args[2]),
                     float(args[3]), float(args[4]), float(args[5]))
@@ -56,13 +53,11 @@ def run(filename):
             tmp = []
             
         elif line == 'circle':
-            #print 'CIRCLE\t' + str(args)
             add_circle(tmp,
                        float(args[0]), float(args[1]), float(args[2]),
                        float(args[3]), step)
 
         elif line == 'hermite' or line == 'bezier':
-            #print 'curve\t' + line + ": " + str(args)
             add_curve(tmp,
                       float(args[0]), float(args[1]),
                       float(args[2]), float(args[3]),
@@ -70,28 +65,23 @@ def run(filename):
                       float(args[6]), float(args[7]),
                       step, line)                      
             
-        elif line == 'line':            
-            #print 'LINE\t' + str(args)
-
+        elif line == 'line':
             add_edge( tmp,
                       float(args[0]), float(args[1]), float(args[2]),
                       float(args[3]), float(args[4]), float(args[5]) )
 
         elif line == 'scale':
-            #print 'SCALE\t' + str(args)
             t = make_scale(float(args[0]), float(args[1]), float(args[2]))
             matrix_mult( stack[-1], t )
             stack[-1] = [ x[:] for x in t]
 
         elif line == 'move':
-            #print 'MOVE\t' + str(args)
             t = make_translate(float(args[0]), float(args[1]), float(args[2]))
             matrix_mult( stack[-1], t )
             stack[-1] = [ x[:] for x in t]
 
 
         elif line == 'rotate':
-            #print 'ROTATE\t' + str(args)
             theta = float(args[1]) * (math.pi / 180)
             
             if args[0] == 'x':
